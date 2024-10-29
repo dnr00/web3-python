@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logger = logging.getLogger(__name__)
 
 API_TOKEN = os.getenv('UKSANG_PRICE_CHECKER_BOT_API_TOKEN')
-GROUP_CHAT_ID = '373419398'
+GROUP_CHAT_ID = os.getenv('UKSANG_PRICE_CHECKER_BOT_CHAT_ID')
 OOGA_BOOGA_API_TOKEN = os.getenv('OOGA_BOOGA_API_TOKEN')
 
 # 토큰 목록 가져오기 및 저장 함수
