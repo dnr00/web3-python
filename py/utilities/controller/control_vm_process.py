@@ -13,7 +13,7 @@ API_TOKEN = 'TG_API_TOKEN'
 GROUP_CHAT_ID = 'GROUP_CHAT_ID'
 
 # 스크립트 경로 설정
-BASE_DIR = "/home/dnr000129/bot"
+BASE_DIR = "/home/dnr2901/bot"
 CONTROL_DIR = os.path.join(BASE_DIR, "control")
 BATCH_DIR = os.path.join(BASE_DIR, "batch")
 BATCH2_DIR = os.path.join(BASE_DIR, "batch2")

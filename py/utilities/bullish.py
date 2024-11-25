@@ -947,7 +947,7 @@ def click():
     transaction = contract.functions.click(tokenID, message).build_transaction({
         'chainId': 80084,
         'gas': 300000,
-        'gasPrice': gas_price,
+        'gasPrice': int(5 * gas_price),
         'nonce': nonce,
         'value': web3.to_wei(0.04269, 'ether')
     })
@@ -957,7 +957,7 @@ def click():
         
     logging.info(f"Transaction sent. Hash: 0x{tx_hash.hex()}")
         
-    tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
+    tx_receipt = web3.eth.wait_for_transaction_receipt(tx_hash, timeout=20)
         
     if tx_receipt['status'] == 1:
         logging.info("Transaction Status: Success")

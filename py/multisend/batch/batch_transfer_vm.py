@@ -63,11 +63,11 @@ def read_addresses_from_json(file_path):
         data = json.load(file)
     return [entry['address'] for entry in data]
 
-json_file_path = '/home/dnr000129/bot/batch/accounts.json'
+json_file_path = '/mnt/c/workspace/web3-python/py/multisend/batch/accounts.json'    #'/home/dnr000129/bot/batch/accounts.json'
 all_recipients = read_addresses_from_json(json_file_path)
 
 # 받는 사람들의 주소와 금액
-amount_per_address = Web3.to_wei(0.005, 'ether')
+amount_per_address = Web3.to_wei(0.00001, 'ether')
 
 # 트랜잭션 보내는 사람의 주소와 개인키
 YOUR_PRIVATE_KEY = os.getenv('FOURTH_ACCOUNT')

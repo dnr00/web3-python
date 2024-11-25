@@ -1,8 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 from utils.api import get_main_prices
-from handlers.command_handlers import price
-from handlers.watchlist_handlers import manage_watchlist
+from handlers.command_handlers import price, update_tokens
+from managers.watchlist import watchlist_manager
 
 async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -62,9 +62,14 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         )
 
     elif query.data == 'watchlist':
-        # 워치리스트 표시
         user_id = update.effective_user.id
-        await manage_watchlist(update, context)
+        watchlist = await watchlist_manager.get_watchlist(user_id)
+        
+        if watchlist:
+            await query.message.reply_text(f"현재 워치리스트: {', '.join(watchlist)}")
+        else:
+            await query.message.reply_text("워치리스트가 비어있습니다.")
+            
         await query.message.reply_text(
             "워치리스트를 관리하려면 다음 명령어를 사용하세요:\n"
             "/watchlist add <토큰심볼> - 워치리스트에 토큰 추가\n"
@@ -105,8 +110,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         )
 
     elif query.data == 'update_tokens':
-        from handlers.command_handlers import update_tokens
-        await update_tokens(update, context)
+        await update_tokens(update, context, is_callback=True)
         await query.message.reply_text(
             "다른 기능을 사용하시려면 아래 버튼을 눌러주세요.",
             reply_markup=home_markup

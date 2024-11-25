@@ -17,8 +17,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # Telegram Bot API token과 그룹 Chat ID
-API_TOKEN = 'TG_API_TOKEN'
-GROUP_CHAT_ID = 'GROUP_CHAT_ID'
+API_TOKEN = os.getenv('UKSANG_BOT_API_TOKEN')
+GROUP_CHAT_ID = '-4559796673'
 
 # Web3 설정
 WEB3_PROVIDER_URI = 'https://bera-testnet.nodeinfra.com'

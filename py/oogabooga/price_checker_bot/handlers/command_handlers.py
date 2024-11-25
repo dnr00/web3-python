@@ -78,9 +78,10 @@ async def price(update: Update, context: ContextTypes.DEFAULT_TYPE, is_callback:
     else:
         await message.reply_text("가격 정보를 가져오지 못했습니다.")
 
-async def update_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text("토큰 목록을 업데이트하는 중...")
+async def update_tokens(update: Update, context: ContextTypes.DEFAULT_TYPE, is_callback: bool = False) -> None:
+    message = update.callback_query.message if is_callback else update.message
+    await message.reply_text("토큰 목록을 업데이트하는 중...")
     if fetch_and_save_token_list():
-        await update.message.reply_text("토큰 목록이 성공적으로 업데이트되었습니다.")
+        await message.reply_text("토큰 목록이 성공적으로 업데이트되었습니다.")
     else:
-        await update.message.reply_text("토큰 목록 업데이트 중 오류가 발생했습니다.")
+        await message.reply_text("토큰 목록 업데이트 중 오류가 발생했습니다.")

@@ -36,6 +36,6 @@ async def create_application():
     application.add_handler(CallbackQueryHandler(button_callback))
     
     # 주기적인 가격 알림 체크
-    application.job_queue.run_repeating(price_alert_manager.check_alerts, interval=300)
+    application.job_queue.run_repeating(price_alert_manager.check_alerts, interval=30)
     
     return application
